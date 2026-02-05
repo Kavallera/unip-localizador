@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNIP - Localizador de Salas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Adicione estas linhas no <head> -->
+<meta name="theme-color" content="#003366">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho UNIP -->
+        <header class="unip-header">
+            <div class="unip-logo">
+                <div class="logo-circle">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="unip-text">
+                    <h1>UNIP</h1>
+                    <p>Universidade Paulista</p>
+                </div>
+            </div>
+            <div class="header-subtitle">
+                <h2><i class="fas fa-map-signs"></i> Localizador de Salas</h2>
+                <p class="subtitle">Encontre sua sala de aula rapidamente</p>
+            </div>
+        </header>
+
+        <!-- Aplicativo -->
+        <div id="app">
+            <!-- Indicador de Passos -->
+            <div class="steps-indicator">
+                <div class="step-item active">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Turno</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Curso</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Semestre</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Sala</div>
+                </div>
+            </div>
+
+            <!-- Barra de Progresso -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <!-- Tela 1: Turno -->
+            <div id="step1" class="step active">
+                <div class="step-content">
+                    <div class="step-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Qual é o seu turno?</h3>
+                    <p class="step-description">Selecione o período das suas aulas</p>
+                    
+                    <div class="options-grid">
+                        <button class="option-card" onclick="selectTurno('manha')">
+                            <div class="card-icon morning">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="card-content">
+                                <h4>Manhã</h4>
+                                <p>Aulas das 7h às 12h</p>
+                            </div>
+                            <div class="card-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </button>
+                        
+                        <button class="option-card" onclick="selectTurno('noite')">
+                            <div class="card-icon night">
+                                <i class="fas fa-moon"></i>
+                            </div>
+                            <div class="card-content">
+                                <h4>Noite</h4>
+                                <p>Aulas das 19h às 22h</p>
+                            </div>
+                            <div class="card-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <div class="scan-info">
+                        <i class="fas fa-qrcode"></i>
+                        <p>Escaneie o QR Code disponível no campus</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela 2: Curso -->
+            <div id="step2" class="step">
+                <div class="step-content">
+                    <div class="step-header">
+                        <button class="back-button" onclick="voltar(1)">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <div class="step-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+                    <h3>Selecione seu curso</h3>
+                    <p class="step-description">Escolha entre os cursos disponíveis</p>
+                    
+                    <div id="cursos-container" class="options-list"></div>
+                </div>
+            </div>
+
+            <!-- Tela 3: Semestre -->
+            <div id="step3" class="step">
+                <div class="step-content">
+                    <div class="step-header">
+                        <button class="back-button" onclick="voltar(2)">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <div class="step-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                    </div>
+                    <h3>Selecione seu semestre</h3>
+                    <p class="step-description">Escolha o período atual</p>
+                    
+                    <div id="semestres-container" class="options-list"></div>
+                </div>
+            </div>
+
+            <!-- Tela 4: Resultado -->
+            <div id="step4" class="step">
+                <div class="step-content">
+                    <div class="step-header">
+                        <button class="back-button" onclick="voltar(3)">
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <div class="step-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                    </div>
+                    
+                    <div id="resultado">
+                        <div class="success-animation">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3>Sala Localizada!</h3>
+                        <p class="step-description">Confira os detalhes da sua sala</p>
+                        
+                        <div class="sala-card" id="sala-info">
+                            <!-- Informações da sala aparecerão aqui -->
+                        </div>
+                        
+                        <div class="actions">
+                            <button class="btn-action share" onclick="compartilhar()">
+                                <i class="fas fa-share-alt"></i>
+                                Compartilhar
+                            </button>
+                            <button class="btn-action restart" onclick="reiniciar()">
+                                <i class="fas fa-redo"></i>
+                                Nova Consulta
+                            </button>
+                        </div>
+                        
+                        <div class="unip-footer">
+                            <p><i class="fas fa-info-circle"></i> Em caso de dúvidas, procure a secretaria acadêmica</p>
+                            <p class="copyright">© UNIP - Universidade Paulista</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

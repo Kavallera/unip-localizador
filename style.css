@@ -1,0 +1,535 @@
+/* Reset e Configurações Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0c2461 0%, #1e3799 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* Cabeçalho UNIP */
+.unip-header {
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    margin-bottom: 2px;
+}
+
+.unip-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.logo-circle {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #003366 0%, #0066cc 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-circle i {
+    font-size: 28px;
+    color: white;
+}
+
+.unip-text h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #003366;
+    margin: 0;
+    line-height: 1;
+}
+
+.unip-text p {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+    margin: 0;
+}
+
+.header-subtitle h2 {
+    color: #003366;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.header-subtitle .subtitle {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Aplicativo Principal */
+#app {
+    background: white;
+    border-radius: 0 0 20px 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Indicador de Passos */
+.steps-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #999;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.step-item.active .step-number {
+    background: #003366;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+}
+
+.step-label {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #999;
+    font-weight: 500;
+}
+
+.step-item.active .step-label {
+    color: #003366;
+    font-weight: 600;
+}
+
+.step-line {
+    flex: 1;
+    height: 3px;
+    background: #e0e0e0;
+    margin: 0 10px;
+    position: relative;
+    top: -20px;
+}
+
+/* Barra de Progresso */
+.progress-container {
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #003366, #0066cc);
+    width: 25%;
+    transition: width 0.4s ease;
+    border-radius: 3px;
+}
+
+/* Estilos das Etapas */
+.step {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.step.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.step-content {
+    text-align: center;
+}
+
+.step-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+}
+
+.step-icon i {
+    font-size: 36px;
+    color: #003366;
+}
+
+.step-content h3 {
+    color: #003366;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+.step-description {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+/* Opções da Etapa 1 */
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.option-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    width: 100%;
+}
+
+.option-card:hover {
+    border-color: #003366;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.card-icon.morning {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+}
+
+.card-icon.night {
+    background: linear-gradient(135deg, #4A00E0, #8E2DE2);
+}
+
+.card-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.card-content {
+    flex: 1;
+}
+
+.card-content h4 {
+    color: #003366;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.card-content p {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.card-arrow i {
+    color: #003366;
+    font-size: 1.2rem;
+}
+
+/* Informação do QR Code */
+.scan-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.scan-info i {
+    color: #003366;
+    font-size: 1.2rem;
+}
+
+/* Botão Voltar */
+.step-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    background: #f8f9fa;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #003366;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #e9ecef;
+    transform: scale(1.05);
+}
+
+/* Listas de Opções (Cursos e Semestres) */
+.options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.options-list button {
+    padding: 18px 20px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.options-list button:hover {
+    border-color: #003366;
+    background: #e3f2fd;
+    transform: translateX(5px);
+}
+
+.options-list button i {
+    color: #003366;
+    font-size: 1.2rem;
+    width: 24px;
+}
+
+/* Tela de Resultado */
+.success-animation {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.success-animation i {
+    font-size: 48px;
+    color: white;
+}
+
+.sala-card {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 25px 0;
+    text-align: center;
+    border-left: 5px solid #003366;
+}
+
+.sala-card h4 {
+    font-size: 2.8rem;
+    color: #003366;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.sala-card p {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.sala-card p i {
+    color: #003366;
+    width: 20px;
+}
+
+/* Botões de Ação */
+.actions {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.btn-action {
+    flex: 1;
+    padding: 18px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-action.share {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    color: white;
+}
+
+.btn-action.restart {
+    background: #f8f9fa;
+    color: #003366;
+    border: 2px solid #e0e0e0;
+}
+
+.btn-action:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Rodapé UNIP */
+.unip-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.unip-footer p {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.unip-footer .copyright {
+    color: #003366;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+/* Scrollbar Personalizada */
+.options-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.options-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.options-list::-webkit-scrollbar-thumb {
+    background: #003366;
+    border-radius: 3px;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .unip-header {
+        padding: 20px 15px;
+    }
+    
+    #app {
+        padding: 20px 15px;
+    }
+    
+    .unip-text h1 {
+        font-size: 2rem;
+    }
+    
+    .step-icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .step-icon i {
+        font-size: 32px;
+    }
+    
+    .sala-card h4 {
+        font-size: 2.2rem;
+    }
+    
+    .actions {
+        flex-direction: column;
+    }
+}
