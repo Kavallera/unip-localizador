@@ -391,18 +391,76 @@ body {
     color: white;
 }
 
+/* ==================== NOVO: CORES POR PRÉDIO ==================== */
+
 .sala-card {
-    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
     border-radius: 20px;
     padding: 30px;
     margin: 25px 0;
     text-align: center;
     border-left: 5px solid #003366;
+    transition: all 0.3s ease;
 }
 
-.sala-card h4 {
+/* PRÉDIO PRINCIPAL - AZUL */
+.sala-card[data-predio="PRINCIPAL"] {
+    border-left-color: #2196F3;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+}
+
+.sala-card[data-predio="PRINCIPAL"] h3 {
+    color: #1565C0;
+}
+
+.predio-principal::before {
+    content: "🏫 ";
+}
+
+/* PRÉDIO ÁTRIO - VERDE */
+.sala-card[data-predio="ÁTRIO"] {
+    border-left-color: #4CAF50;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+}
+
+.sala-card[data-predio="ÁTRIO"] h3 {
+    color: #2E7D32;
+}
+
+.predio-atrio::before {
+    content: "🌳 ";
+}
+
+/* PRÉDIO CH.1 - ROXO */
+.sala-card[data-predio="CH.1"] {
+    border-left-color: #9C27B0;
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+}
+
+.sala-card[data-predio="CH.1"] h3 {
+    color: #7B1FA2;
+}
+
+.predio-ch1::before {
+    content: "🏛️ ";
+}
+
+/* PRÉDIO CH.2 - LARANJA */
+.sala-card[data-predio="CH.2"] {
+    border-left-color: #FF9800;
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+}
+
+.sala-card[data-predio="CH.2"] h3 {
+    color: #EF6C00;
+}
+
+.predio-ch2::before {
+    content: "🏢 ";
+}
+
+/* Estilo do texto da sala */
+.sala-card h3 {
     font-size: 2.8rem;
-    color: #003366;
     margin-bottom: 20px;
     font-weight: 700;
 }
@@ -418,9 +476,57 @@ body {
 }
 
 .sala-card p i {
-    color: #003366;
     width: 20px;
 }
+
+/* Ícones coloridos por prédio */
+.sala-card[data-predio="PRINCIPAL"] i {
+    color: #2196F3;
+}
+
+.sala-card[data-predio="ÁTRIO"] i {
+    color: #4CAF50;
+}
+
+.sala-card[data-predio="CH.1"] i {
+    color: #9C27B0;
+}
+
+.sala-card[data-predio="CH.2"] i {
+    color: #FF9800;
+}
+
+/* Badge do prédio */
+.predio-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.predio-badge.principal {
+    background: #2196F3;
+    color: white;
+}
+
+.predio-badge.atrio {
+    background: #4CAF50;
+    color: white;
+}
+
+.predio-badge.ch1 {
+    background: #9C27B0;
+    color: white;
+}
+
+.predio-badge.ch2 {
+    background: #FF9800;
+    color: white;
+}
+
+/* ==================== FIM DAS CORES POR PRÉDIO ==================== */
 
 /* Botões de Ação */
 .actions {
@@ -498,6 +604,30 @@ body {
     border-radius: 3px;
 }
 
+/* Badge do contador */
+#badge-contador {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #003366;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
 /* Responsividade */
 @media (max-width: 600px) {
     .container {
@@ -525,11 +655,48 @@ body {
         font-size: 32px;
     }
     
-    .sala-card h4 {
+    .sala-card h3 {
         font-size: 2.2rem;
     }
     
     .actions {
         flex-direction: column;
     }
+    
+    #badge-contador {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        justify-content: center;
+    }
+}
+
+/* Animações extras */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.sala-card {
+    animation: slideIn 0.5s ease;
+}
+
+/* Modo offline */
+.offline-indicator {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #ff9800;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    z-index: 9999;
+    animation: pulse 2s infinite;
 }
