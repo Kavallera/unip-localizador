@@ -46,21 +46,30 @@ const dadosSalas = {
         }
     },
     noite: {
+         "ARQUITETURA": {
+            "1°P": { sala: "A-301", andar: "3°ANDAR", predio: "ÁTRIO" },
+            "2°P/3ºP": { sala: "A-504", andar: "5°ANDAR", predio: "ÁTRIO" },
+            "4°P/5°P": { sala: "A-201", andar: "2°ANDAR", predio: "ÁTRIO" },
+            "6°P/7ªP": { sala: "A-401", andar: "4º ANDAR", predio: "ÁTRIO" },
+             "8ºP": { sala: "A-601", andar: "6º ANDAR", predio: "ÁTRIO" },
+             "9°P": { sala: "A-101", andar: "1º ANDAR", predio: "ÁTRIO" },
+        },
         "ADMINISTRAÇÃO": {
+            "1°P": { sala: "C-202", andar: "2°ANDAR", predio: "PRINCIPAL" },
             "2°P/3ºP-Q": { sala: "C-407", andar: "4°ANDAR", predio: "PRINCIPAL" },
             "4°P/5°P": { sala: "C-207", andar: "2°ANDAR", predio: "PRINCIPAL" },
             "6°P-Q / 7ªP-Q-R": { sala: "C-203", andar: "2º ANDAR", predio: "PRINCIPAL" }
         },
         "ANALISE E DESENV. DE SISTEMAS": {
+            "1°P-Q": { sala: "C-307", andar: "3°ANDAR", predio: "PRINCIPAL" },
             "2°P/3ºP-Q-R": { sala: "C-303", andar: "3ºANDAR", predio: "PRINCIPAL" },
             "4°P-Q": { sala: "C-504", andar: "5°ANDAR", predio: "PRINCIPAL" },
-            "2°P/3ºP": { sala: "A-501", andar: "5ºANDAR", predio: "ÁTRIO" },
-            "4°P/5°P": { sala: "A-201", andar: "2°ANDAR", predio: "ÁTRIO" },
-            "6°P/7°P": { sala: "A-401", andar: "4º ANDAR", predio: "ÁTRIO" },
-            "8°P": { sala: "A-601", andar: "6º ANDAR", predio: "ÁTRIO" },
-            "9°P": { sala: "A-101", andar: "1º ANDAR", predio: "ÁTRIO" }
+        },
+         "ANALISE E DESENV. DE SISTEMAS": {
+            "1°P-Q": { sala: "C-408", andar: "4°ANDAR", predio: "PRINCIPAL" },
         },
         "BIOMEDICINA": {
+             "1°P": { sala: "A-305", andar: "3°ANDAR", predio: "ÁTRIO" },
             "2ºP/3°P": { sala: "A-202", andar: "2ºANDAR", predio: "ÁTRIO" },
             "4°P/5°P": { sala: "A-203", andar: "2°ANDAR", predio: "ÁTRIO" }
         },
@@ -78,23 +87,25 @@ const dadosSalas = {
             "6ºP/7ºP-Q": { sala: "405", andar: "4º ANDAR", predio: "CH.1" }
         },
         "CIÊNCIAS ECONÔMICAS": {
+             "1ºP": { sala: "C-505", andar: "5ºANDAR", predio: "PRINCIPAL" },
             "2°P/3ºP-Q": { sala: "C-507", andar: "5º ANDAR", predio: "PRINCIPAL" },
             "4°P/5°P": { sala: "C-506", andar: "5°ANDAR", predio: "PRINCIPAL" }
         },
         "DIREITO": {
+            "1ºP-Q": { sala: "C-103", andar: "1°ANDAR", predio: "PRINCIPAL" },
             "2°P/3ºP-Q": { sala: "C-603", andar: "6°ANDAR", predio: "PRINCIPAL" },
             "2°Q/3°R-S": { sala: "C-604", andar: "6°ANDAR", predio: "PRINCIPAL" },
             "4°P/5°P": { sala: "C-602", andar: "6°ANDAR", predio: "PRINCIPAL" },
             "4°Q/5°R-S": { sala: "C-609", andar: "6°ANDAR", predio: "PRINCIPAL" },
             "6°Q/7°P-Q": { sala: "C-104", andar: "1º ANDAR", predio: "PRINCIPAL" },
             "6°P/7°R": { sala: "C-302", andar: "3°ANDAR", predio: "PRINCIPAL" },
-            "8°P-Q": { sala: "C-304", andar: "2°ANDAR", predio: "PRINCIPAL" },
+            "8°P-Q": { sala: "C-304", andar: "3°ANDAR", predio: "PRINCIPAL" },
             "9°P-Q": { sala: "C-509", andar: "5º ANDAR", predio: "PRINCIPAL" },
             "9°R-S": { sala: "C-508", andar: "5º ANDAR", predio: "PRINCIPAL" }
         },
         "DESIGN GRÁFICO": {
+             "1ºP/4ºP": { sala: "C-301", andar: "3°ANDAR", predio: "PRINCIPAL" },
             "2°P/3ºP": { sala: "C-208", andar: "2°ANDAR", predio: "PRINCIPAL" },
-            "4°P": { sala: "C-301", andar: "3°ANDAR", predio: "PRINCIPAL" }
         },
         "ED. FÍSICA": {
             "2ºP/3ºP": { sala: "P.5.4", andar: "5ºANDAR", predio: "CH.2" },
@@ -130,11 +141,13 @@ const dadosSalas = {
             "6ºP": { sala: "P.3.3", andar: "3ºANDAR", predio: "CH.2" }
         },
         "FARMÁCIA": {
+              "1°P": { sala: "A-603", andar: "6º ANDAR", predio: "ÁTRIO" },
             "2ºP/3°P": { sala: "A-602", andar: "6º ANDAR", predio: "ÁTRIO" },
             "4°P/5°P": { sala: "A-402", andar: "4°ANDAR", predio: "ÁTRIO" },
             "8ºP": { sala: "A-405", andar: "4º ANDAR", predio: "ÁTRIO" }
         },
         "FISIOTERAPIA": {
+            "1ºP": { sala: "A-404", andar: "4° ANDAR", predio: "ÁTRIO" },
             "2°P/3ºP": { sala: "A-503", andar: "5° ANDAR", predio: "ÁTRIO" },
             "4°P/5°P": { sala: "A-504", andar: "5° ANDAR", predio: "ÁTRIO" },
             "6°P/7ºP": { sala: "A-505", andar: "5° ANDAR", predio: "ÁTRIO" },
@@ -153,9 +166,9 @@ const dadosSalas = {
             "4ºP": { sala: "P.4.2", andar: "4ºANDAR", predio: "CH.2" }
         },
         "JORNALISMO": {
-            "2°P/3ºP": { sala: "A-605", andar: "6° ANDAR", predio: "ÁTRIO" },
-            "4°P/5°P": { sala: "A-604", andar: "6° ANDAR", predio: "ÁTRIO" },
-            "2°P/3ºP": { sala: "C-308", andar: "3° ANDAR", predio: "PRINCIPAL" }
+             "1ºP": { sala: "C-502", andar: "5° ANDAR", predio: "PRINCIPAL" }
+            "2°P/3ºP": { sala: "C-305", andar: "3° ANDAR", predio: "PRINCIPAL" },
+            "4°P/5°P": { sala: "C-304", andar: "3° ANDAR", predio: "PRINCIPAL" },
         },
         "NUTRIÇÃO": {
             "2ºP/3ºP": { sala: "303", andar: "3º ANDAR", predio: "CH.1" },
@@ -167,6 +180,7 @@ const dadosSalas = {
             "6ºP/7ºP": { sala: "501", andar: "5º ANDAR", predio: "CH.1" }
         },
         "PROPAGANDA E MARKETING": {
+             "2°P/3ºP": { sala: "C-308", andar: "3° ANDAR", predio: "PRINCIPAL" },
             "4°P/5°P": { sala: "C-405", andar: "4° ANDAR", predio: "PRINCIPAL" },
             "6°P/7ºP": { sala: "C-404", andar: "4º ANDAR", predio: "PRINCIPAL" }
         },
@@ -181,8 +195,9 @@ const dadosSalas = {
             "10ºP-Q": { sala: "402", andar: "4º ANDAR", predio: "CH.1" }
         },
         "RELAÇÕES INTERNACIONAIS": {
-            "2°P/3ºP": { sala: "C-205", andar: "2°ANDAR", predio: "PRINCIPAL" },
-            "4°P/5°P": { sala: "C-204", andar: "2°ANDAR", predio: "PRINCIPAL" }
+              "1ºP": { sala: "C-509", andar: "5° ANDAR", predio: "PRINCIPAL" }
+            "2°P/3ºP": { sala: "C-501", andar: "5°ANDAR", predio: "PRINCIPAL" },
+            "4°P/5°P": { sala: "C-510", andar: "5°ANDAR", predio: "PRINCIPAL" }
         },
         "SISTEMAS DE INFORMAÇÃO": {
             "4ºP/5ºP": { sala: "310", andar: "3º ANDAR", predio: "CH.1" },
@@ -195,4 +210,5 @@ const dadosSalas = {
     }
 
 };
+
 
