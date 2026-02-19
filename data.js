@@ -6,7 +6,7 @@ const dadosSalas = {
             "8ºA(online)": { sala: "C-308", andar: "3º", predio: "PRINCIPAL" }
         },
         "ANÁLISE E DES. DE SISTEMAS": {
-            "1ºA": { sala: "A-602", andar: "6º", predio: "ÁTRIO" }
+            "1ºA": { sala: "A-602", andar: "6º", predio: "ÁTRIO" },
             "2ºA / 3ºA": { sala: "A-603", andar: "6º", predio: "ÁTRIO" }
         },
         "BIOMEDICINA": {
@@ -195,3 +195,4 @@ const dadosSalas = {
     }
 
 };
+
