@@ -6,16 +6,20 @@ const dadosSalas = {
             "8ºA(online)": { sala: "C-308", andar: "3º", predio: "PRINCIPAL" }
         },
         "ANÁLISE E DES. DE SISTEMAS": {
+            "1ºA": { sala: "A-602", andar: "6º", predio: "ÁTRIO" }
             "2ºA / 3ºA": { sala: "A-603", andar: "6º", predio: "ÁTRIO" }
         },
         "BIOMEDICINA": {
+            "1ºA": { sala: "A-6504", andar: "5º", predio: "ÁTRIO" },
             "2ºA / 3ºA": { sala: "A-505", andar: "5º", predio: "ÁTRIO" },
             "6ºA / 7ºA": { sala: "A-503", andar: "5º", predio: "ÁTRIO" }
         },
         "CIÊNCIAS DA COMPUTAÇÃO": {
+            "1ºA": { sala: "A-303", andar: "3º", predio: "ÁTRIO" },
             "2ºA / 3ºA": { sala: "A-302", andar: "3º", predio: "ÁTRIO" }
         },
         "DIREITO": {
+            "1ºA": { sala: "C-306", andar: "3º", predio: "PRINCIPAL" },
             "2ºA / 3ºA B": { sala: "C-302", andar: "3º", predio: "PRINCIPAL" },
             "4º A / 5ºA": { sala: "C-303", andar: "3º", predio: "PRINCIPAL" },
             "6ºA / 7ºA": { sala: "C-402", andar: "4º", predio: "PRINCIPAL" },
@@ -33,6 +37,7 @@ const dadosSalas = {
             "6ºA / 7ºA": { sala: "A-604", andar: "6º", predio: "ÁTRIO" }
         },
         "PSICOLOGIA": {
+            "1ºA": { sala: "C-202", andar: "2º", predio: "PRINCIPAL" },
             "2ºA / 3ºA": { sala: "C-206", andar: "2º", predio: "PRINCIPAL" },
             "4º A / 5ºA-B": { sala: "C-406", andar: "4º", predio: "PRINCIPAL" },
             "6ºA / 7ºA": { sala: "C-203", andar: "2º", predio: "PRINCIPAL" },
@@ -188,4 +193,5 @@ const dadosSalas = {
             "4°P": { sala: "C-504", andar: "5° ANDAR", predio: "PRINCIPAL" }
         }
     }
+
 };
