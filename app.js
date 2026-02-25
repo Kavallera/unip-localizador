@@ -1,4 +1,4 @@
-// app.js - Localizador de Salas UNIP - Versão Completa
+// app.js - Localizador de Salas UNIP - VERSÃO CORRIGIDA
 
 // Estado do aplicativo
 let estado = { 
@@ -19,12 +19,44 @@ const elementos = {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('UNIP Localizador iniciado');
     
+    // Verificar se dadosSalas existe
+    if (typeof dadosSalas === 'undefined') {
+        console.error('ERRO: dadosSalas não foi carregado!');
+        mostrarErroCritico();
+        return;
+    }
+    
     // Inicializar contador
     inicializarContador();
     
     // Atualizar progresso inicial
     atualizarProgresso(25);
 });
+
+// Função para mostrar erro crítico
+function mostrarErroCritico() {
+    const app = document.getElementById('app');
+    if (app) {
+        app.innerHTML = `
+            <div style="text-align: center; padding: 50px 20px;">
+                <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: #dc2626;"></i>
+                <h2 style="color: #dc2626; margin: 20px 0;">Erro ao carregar dados</h2>
+                <p style="color: #666;">Por favor, recarregue a página ou tente novamente mais tarde.</p>
+                <button onclick="location.reload()" style="
+                    background: #003366;
+                    color: white;
+                    border: none;
+                    padding: 12px 25px;
+                    border-radius: 25px;
+                    margin-top: 20px;
+                    cursor: pointer;
+                ">
+                    <i class="fas fa-redo"></i> Recarregar
+                </button>
+            </div>
+        `;
+    }
+}
 
 // ==================== FUNÇÕES PRINCIPAIS ====================
 
@@ -51,7 +83,7 @@ function selectTurno(turno) {
 function popularCursos() {
     elementos.cursosContainer.innerHTML = '';
     
-    if (!dadosSalas[estado.turno]) {
+    if (!dadosSalas || !dadosSalas[estado.turno]) {
         elementos.cursosContainer.innerHTML = `
             <div style="text-align: center; padding: 20px; color: #666;">
                 <i class="fas fa-exclamation-circle"></i>
@@ -106,7 +138,7 @@ function selectCurso(curso) {
 function popularSemestres() {
     elementos.semestresContainer.innerHTML = '';
     
-    if (!dadosSalas[estado.turno] || !dadosSalas[estado.turno][estado.curso]) {
+    if (!dadosSalas || !dadosSalas[estado.turno] || !dadosSalas[estado.turno][estado.curso]) {
         elementos.semestresContainer.innerHTML = `
             <div style="text-align: center; padding: 20px; color: #666;">
                 <i class="fas fa-exclamation-circle"></i>
@@ -176,9 +208,17 @@ function selectSemestre(semestre) {
 
 function mostrarResultado() {
     try {
+        // Verificar se todos os dados existem
+        if (!dadosSalas || 
+            !dadosSalas[estado.turno] || 
+            !dadosSalas[estado.turno][estado.curso] || 
+            !dadosSalas[estado.turno][estado.curso][estado.semestre]) {
+            throw new Error('Sala não encontrada');
+        }
+        
         const info = dadosSalas[estado.turno][estado.curso][estado.semestre];
         
-        // Configurações por prédio
+        // Configurações por prédio (ATUALIZADO com todos os prédios)
         const configPredios = {
             'PRINCIPAL': { 
                 cor: '#2196F3', 
@@ -208,10 +248,12 @@ function mostrarResultado() {
         
         const predioConfig = configPredios[info.predio] || configPredios['PRINCIPAL'];
         
-        // Formatar texto do andar
-        const andarFormatado = info.andar.includes('ANDAR') || info.andar.includes('º') 
-            ? info.andar 
-            : `${info.andar}º ANDAR`;
+        // Limpar formatação do andar
+        let andarFormatado = info.andar || '';
+        andarFormatado = andarFormatado
+            .replace(/ANDAR/gi, '')
+            .replace(/°|º/g, 'º')
+            .trim() + 'º ANDAR';
         
         // Criar HTML do resultado
         elementos.salaInfo.innerHTML = `
@@ -222,7 +264,7 @@ function mostrarResultado() {
                     <p><i class="fas fa-walking" style="color: ${predioConfig.cor};"></i> 
                        <strong>Andar:</strong> ${andarFormatado}</p>
                     
-                    <p><i class="${predioConfig.icone} ${predioConfig.classe}" style="color: ${predioConfig.cor};"></i> 
+                    <p><i class="${predioConfig.icone}" style="color: ${predioConfig.cor};"></i> 
                        <strong>Prédio:</strong> ${predioConfig.nome}</p>
                     
                     <p><i class="fas fa-clock" style="color: ${predioConfig.cor};"></i> 
@@ -235,8 +277,7 @@ function mostrarResultado() {
                        <strong>Semestre:</strong> ${estado.semestre}</p>
                 </div>
                 
-                <div class="predio-badge ${predioConfig.classe.replace('predio-', '')}" 
-                     style="background: ${predioConfig.cor};">
+                <div class="predio-badge" style="background: ${predioConfig.cor};">
                     ${predioConfig.nome}
                 </div>
             </div>
@@ -354,6 +395,12 @@ function reiniciar() {
 
 async function compartilhar() {
     try {
+        // Verificar se há resultado para compartilhar
+        if (!estado.turno || !estado.curso || !estado.semestre) {
+            mostrarNotificacao('Selecione uma sala primeiro', 'warning');
+            return;
+        }
+        
         const info = dadosSalas[estado.turno][estado.curso][estado.semestre];
         
         const texto = `📚 UNIP - Minha Sala\n` +
@@ -399,7 +446,7 @@ async function compartilhar() {
     }
 }
 
-// ==================== CONTADOR DE USUÁRIOS (SIMPLIFICADO) ====================
+// ==================== CONTADOR DE USUÁRIOS ====================
 
 function inicializarContador() {
     // Incrementar contador de acessos únicos
@@ -470,19 +517,23 @@ function criarBadgeContador() {
 }
 
 function registrarUso(acao, ...detalhes) {
-    // Salvar no localStorage para estatísticas
-    const logs = JSON.parse(localStorage.getItem('unip_logs_uso') || '[]');
-    logs.push({
-        acao: acao,
-        detalhes: detalhes,
-        data: new Date().toISOString(),
-        usuario: localStorage.getItem('unip_usuario_id') || 'anonimo'
-    });
-    
-    // Manter apenas últimos 100 logs
-    if (logs.length > 100) logs.shift();
-    
-    localStorage.setItem('unip_logs_uso', JSON.stringify(logs));
+    try {
+        // Salvar no localStorage para estatísticas
+        const logs = JSON.parse(localStorage.getItem('unip_logs_uso') || '[]');
+        logs.push({
+            acao: acao,
+            detalhes: detalhes,
+            data: new Date().toISOString(),
+            usuario: localStorage.getItem('unip_usuario_id') || 'anonimo'
+        });
+        
+        // Manter apenas últimos 100 logs
+        if (logs.length > 100) logs.shift();
+        
+        localStorage.setItem('unip_logs_uso', JSON.stringify(logs));
+    } catch (e) {
+        // Ignorar erros de localStorage
+    }
 }
 
 // ==================== FUNÇÕES AUXILIARES ====================
@@ -538,8 +589,6 @@ function mostrarNotificacao(mensagem, tipo = 'info') {
 
 // Detectar modo offline/online
 function atualizarStatusConexao() {
-    const status = navigator.onLine ? 'online' : 'offline';
-    
     if (!navigator.onLine) {
         const offlineMsg = document.createElement('div');
         offlineMsg.id = 'offline-indicator';
@@ -604,14 +653,10 @@ if ('serviceWorker' in navigator) {
 
 // Salvar dados para uso offline
 if (typeof dadosSalas !== 'undefined') {
-    localStorage.setItem('unip_dados_salas', JSON.stringify(dadosSalas));
-    localStorage.setItem('unip_dados_cache_date', new Date().toISOString());
-}
-
-// Carregar dados do cache se offline
-if (!navigator.onLine) {
-    const dadosCache = localStorage.getItem('unip_dados_salas');
-    if (dadosCache) {
-        console.log('Dados carregados do cache local (offline)');
+    try {
+        localStorage.setItem('unip_dados_salas', JSON.stringify(dadosSalas));
+        localStorage.setItem('unip_dados_cache_date', new Date().toISOString());
+    } catch (e) {
+        console.log('Não foi possível salvar dados no cache local');
     }
 }
