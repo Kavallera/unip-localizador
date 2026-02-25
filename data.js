@@ -1,5 +1,4 @@
-// data.js - Dados das Salas UNIP - VERSÃO CORRIGIDA
-// TODAS as turmas foram mantidas, apenas corrigidos erros de sintaxe
+// data.js - Dados das Salas UNIP - VERSÃO FINAL CORRIGIDA
 
 const dadosSalas = {
     manha: {
@@ -211,10 +210,4 @@ const dadosSalas = {
 };
 
 // Garantir que o objeto está disponível globalmente
-if (typeof window !== 'undefined') {
-    window.dadosSalas = dadosSalas;
-}
-};
-
-
-
+window.dadosSalas = dadosSalas;
