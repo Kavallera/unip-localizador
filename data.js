@@ -98,9 +98,9 @@ const dadosSalas = {
             "4°Q/5°R-S": { sala: "C-609", andar: "6º ANDAR", predio: "PRINCIPAL" },
             "6°Q/7°P-Q": { sala: "C-104", andar: "1º ANDAR", predio: "PRINCIPAL" },
             "6°P/7°R": { sala: "C-302", andar: "3º ANDAR", predio: "PRINCIPAL" },
-            "8°P-Q": { sala: "C-304", andar: "3º ANDAR", predio: "PRINCIPAL" },
-            "9°P-Q": { sala: "C-509", andar: "5º ANDAR", predio: "PRINCIPAL" },
-            "9°R-S": { sala: "C-508", andar: "5º ANDAR", predio: "PRINCIPAL" }
+            "8°P-Q": { sala: "C-606", andar: "6º ANDAR", predio: "PRINCIPAL" },
+            "9°P-Q": { sala: "C-607", andar: "6º ANDAR", predio: "PRINCIPAL" },
+            "9°R-S": { sala: "C-608", andar: "6º ANDAR", predio: "PRINCIPAL" }
         },
         "DESIGN GRÁFICO": {
             "1ºP/4ºP": { sala: "C-301", andar: "3º ANDAR", predio: "PRINCIPAL" },
@@ -211,3 +211,4 @@ const dadosSalas = {
 
 // Garantir que o objeto está disponível globalmente
 window.dadosSalas = dadosSalas;
+
